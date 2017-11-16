@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+
+    <!--底部导航栏图片颜色-->
+    <color name="bottom_nav_normal">#C7CCD3</color>
+    <color name="bottom_nav_selected">#0B85F9</color>
+
+    <color name="top_nav_bg">#007FFE</color>
+    <color name="top_tab_textcolor_normal">#57C1FE</color>
+    <color name="activity_bg">#F3F7F6</color>
+    <color name="divider_color">#F3F7F6</color>
+    <color name="refresh_color">#007FFE</color>
 </resources>

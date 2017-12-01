@@ -157,7 +157,7 @@ public class MeijuListFragment extends BaseFragment implements IMeituMeijuView {
     public void onDestroy() {
         super.onDestroy();
         if (null != mView) {
-            ((ViewGroup) mView.getParent()).removeView(mView);
+//            ((ViewGroup) mView.getParent()).removeView(mView);
         }
     }
 

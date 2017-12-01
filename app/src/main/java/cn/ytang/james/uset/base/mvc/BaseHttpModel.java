@@ -10,13 +10,13 @@ import java.io.Serializable;
  * Created by James on 17/11/17.
  */
 
-public class BaseErrorModel implements Serializable{
+public class BaseHttpModel implements Serializable{
 
     private int status;
     private String message;
     private String msg;
 
-    public BaseErrorModel() {}
+    public BaseHttpModel() {}
 
     public int getStatus() {
         return this.status;

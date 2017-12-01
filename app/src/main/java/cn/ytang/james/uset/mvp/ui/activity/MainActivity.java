@@ -7,8 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import java.util.List;
+
 import cn.ytang.james.uset.R;
 import cn.ytang.james.uset.base.BaseActivity;
+import cn.ytang.james.uset.db.DaoUtil;
+import cn.ytang.james.uset.db.entity.User;
 import cn.ytang.james.uset.mvp.ui.fragment.MeijuFragment;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener{
@@ -23,6 +27,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         getSupportActionBar().hide();//隐藏掉整个ActionBar，包括下面的Tabs
         initview();
         initBottomNavigationBar();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                calculateLoginTimes();
+            }
+        }).start();
     }
 
     private void initview(){
@@ -82,6 +92,21 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         ft.commit();
     }
 
+    //记录登录次数
+    private void calculateLoginTimes(){
+        List<User> users = DaoUtil.getUserService().getUserByName("ytang");
+        if (users == null || users.size() == 0) {
+            User user = new User(null, "ytang", "1437", 1,"version update test");
+            DaoUtil.getUserService().insertObject(user);
+        } else {
+            User user = users.get(0);
+            user.setLoginTimes(user.getLoginTimes() + 1);
+            user.setDesc("version update test1");
+            DaoUtil.getUserService().updateObject(user);
+        }
+
+    }
+
     @Override
     public void onTabSelected(int position) {
         switch (position) {
@@ -121,5 +146,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
